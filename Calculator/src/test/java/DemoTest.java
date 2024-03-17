@@ -21,9 +21,8 @@ public class DemoTest {
     }
     @AfterEach
     void afterEachTestMethod(){
-        System.out.printf("@AfterEach");
+        System.out.println("@AfterEach");
     }
-    @Disabled("TODO: Still need to work on it")
     @DisplayName("6/3 = 3")
     @Test
     void testDivision_WhenSixIsDividedByThree_ShouldReturnTwo() {
@@ -39,10 +38,22 @@ public class DemoTest {
         assertEquals(expectedResult, value, "6/3 is 2. The result is wrong!"); /* it's a good practice to always insert a mesage in assert
         the message will only be displayed if the test fails */
     }
+    //@Disabled("TODO: Still need to work on it")
     @Test
     @DisplayName("Division by zero")
     void testDivision_WhenDividendIsDividedByZero_ShouldThrowArithmeticException(){
-        System.out.println("teste");
+        //Arrange
+        int a = 4;
+        int b = 0;
+        String expectedExceptionMessage = "/ by zero"; //é a mensagem da exceção
+        Calculator calculator = new Calculator();
+        //Act & Assert
+        ArithmeticException actualException = assertThrows(ArithmeticException.class,()->{
+            //Act
+            calculator.division(a,b);
+        }, "Division by Zero should throw arithmetic exception");
+        //Assert
+        assertEquals(expectedExceptionMessage, actualException.getMessage(),"Unexpected exception method");
     }
     @Test
     @DisplayName("8-6 = 2")
