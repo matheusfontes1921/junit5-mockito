@@ -1,10 +1,7 @@
 import org.example.Calculator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
@@ -61,6 +58,12 @@ public class DemoTest {
         }, "Division by Zero should throw arithmetic exception");
         //Assert
         assertEquals(expectedExceptionMessage, actualException.getMessage(),"Unexpected exception method");
+    }
+    @ParameterizedTest
+    @ValueSource(strings = {"Matheus", "Gabriel", "Cláudia", "Renato"})
+    void valueSourceDemonstration(String firstName){
+        System.out.println(firstName);
+        assertNotNull(firstName);
     }
     @DisplayName("Test subtraction")
     @ParameterizedTest
