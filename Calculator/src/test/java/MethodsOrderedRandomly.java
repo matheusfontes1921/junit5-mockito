@@ -16,5 +16,4 @@ public class MethodsOrderedRandomly {
     void testC(){
         System.out.println("Running test c");
     }
-
 }
