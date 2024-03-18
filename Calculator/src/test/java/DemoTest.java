@@ -2,6 +2,7 @@ import org.example.Calculator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -64,7 +65,8 @@ public class DemoTest {
     @DisplayName("Test subtraction")
     @ParameterizedTest
     //@MethodSource
-    @CsvSource( {"8,6,2", "21,5,16", "33,5,28"} )
+    //@CsvSource( {"8,6,2", "21,5,16", "33,5,28"} )
+    @CsvFileSource(resources = "/integerSubtraction.csv")
     void testSubtraction(int a, int b, int expectedValue){
         //Arrange - GIVEN
         Calculator calculator = new Calculator();
