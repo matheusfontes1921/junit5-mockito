@@ -1,5 +1,10 @@
 import org.example.Calculator;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,11 +22,11 @@ public class DemoTest {
     @BeforeEach
     void setUpEach(){
         Calculator calc = new Calculator();
-        System.out.println("@BeforeEach");
+        //System.out.println("@BeforeEach");
     }
     @AfterEach
     void afterEachTestMethod(){
-        System.out.println("@AfterEach");
+        //System.out.println("@AfterEach");
     }
     @DisplayName("6/3 = 3")
     @Test
@@ -55,17 +60,24 @@ public class DemoTest {
         //Assert
         assertEquals(expectedExceptionMessage, actualException.getMessage(),"Unexpected exception method");
     }
-    @Test
-    @DisplayName("8-6 = 2")
-    void testSubtraction(){
+    @DisplayName("Test subtraction")
+    @ParameterizedTest
+    @MethodSource()
+    void testSubtraction(int a, int b, int expectedValue){
         //Arrange - GIVEN
         Calculator calculator = new Calculator();
-        int a = 8;
-        int b = 6;
-        int expectValue = 2;
         //Act - WHEN
         int value = calculator.subtraction(a,b);
         //Assert - THEN
-        assertEquals(expectValue,value,()-> "Errado. O valor correto não é esse, uma vez que " + a + " - " + b + " equivale a " + expectValue);
+        assertEquals(expectedValue,value,()-> "Errado. O valor correto não é esse, uma vez que " + a + " - " + b + " equivale a " + expectedValue);
+    }
+    /* este teste parametrizado significa que o teste acima irá rodar três vezes, cada uma com os parametros passados
+    * necessário usar o mesmo nome nos dois metodos para o reconhecimento de que estão juntos */
+    private static Stream<Arguments> testSubtraction(){
+        return Stream.of(
+                Arguments.of(8,6,2),
+                Arguments.of(21,5,16),
+                Arguments.of(33,5,28)
+        );
     }
 }
