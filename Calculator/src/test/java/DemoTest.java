@@ -2,6 +2,7 @@ import org.example.Calculator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -62,7 +63,8 @@ public class DemoTest {
     }
     @DisplayName("Test subtraction")
     @ParameterizedTest
-    @MethodSource()
+    //@MethodSource
+    @CsvSource( {"8,6,2", "21,5,16", "33,5,28"} )
     void testSubtraction(int a, int b, int expectedValue){
         //Arrange - GIVEN
         Calculator calculator = new Calculator();
@@ -73,11 +75,11 @@ public class DemoTest {
     }
     /* este teste parametrizado significa que o teste acima irá rodar três vezes, cada uma com os parametros passados
     * necessário usar o mesmo nome nos dois metodos para o reconhecimento de que estão juntos */
-    private static Stream<Arguments> testSubtraction(){
-        return Stream.of(
-                Arguments.of(8,6,2),
-                Arguments.of(21,5,16),
-                Arguments.of(33,5,28)
-        );
-    }
+//    private static Stream<Arguments> testSubtraction(){
+//        return Stream.of(
+//                Arguments.of(8,6,2),
+//                Arguments.of(21,5,16),
+//                Arguments.of(33,5,28)
+//        );
+//    }
 }
