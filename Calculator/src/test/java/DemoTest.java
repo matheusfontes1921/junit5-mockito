@@ -88,6 +88,15 @@ public class DemoTest {
         int value = calculator.addition(a,b);
         assertEquals(expectedValue,value,"Erro");
     }
+    @Test
+    void testSubtraction(){
+        Calculator calculator = new Calculator();
+        int a = 6;
+        int b = 1;
+        int expectedValue = 5;
+        int value = calculator.subtraction(a,b);
+        assertEquals(expectedValue,value,"Erro");
+    }
     /* este teste parametrizado significa que o teste acima irá rodar três vezes, cada uma com os parametros passados
     * necessário usar o mesmo nome nos dois metodos para o reconhecimento de que estão juntos */
 //    private static Stream<Arguments> testSubtraction(){
