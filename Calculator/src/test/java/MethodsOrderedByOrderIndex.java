@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.*;
 
-@TestInstance(TestInstance.Lifecycle.PER_METHOD)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MethodsOrderedByOrderIndex {
     StringBuilder completed = new StringBuilder("");
